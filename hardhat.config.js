@@ -146,6 +146,7 @@ module.exports = {
 
 const INFURA_API_KEY = process.env.INFURA_API_KEY;
 const PRIVATE_KEY = process.env.PRIVATE_KEY;
+const MATIC_VIGIL_KEY = process.env.MATIC_VIGIL_KEY;
 
 if (INFURA_API_KEY != undefined && PRIVATE_KEY != undefined) {
   module.exports.networks.kovan = {
@@ -168,6 +169,19 @@ if (INFURA_API_KEY != undefined && PRIVATE_KEY != undefined) {
 
   module.exports.networks.mainnet = {
     url: `https://mainnet.infura.io/v3/${INFURA_API_KEY}`,
+    accounts: [PRIVATE_KEY],
+    timeout: 20000
+  };
+}
+
+if (MATIC_VIGIL_KEY != undefined && PRIVATE_KEY != undefined) {
+  module.exports.networks.mumbai = {
+    url: `https://rpc-mumbai.maticvigil.com/v1/${MATIC_VIGIL_KEY}`,
+    accounts: [PRIVATE_KEY],
+    timeout: 20000
+  };
+  module.exports.networks.matic = {
+    url: `https://rpc-mainnet.maticvigil.com/v1/${MATIC_VIGIL_KEY}`,
     accounts: [PRIVATE_KEY],
     timeout: 20000
   };
